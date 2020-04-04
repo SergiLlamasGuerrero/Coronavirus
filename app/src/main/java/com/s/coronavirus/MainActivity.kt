@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.s.coronavirus.adapter.OverviewAdapter
+import com.s.coronavirus.adapter.entities.OverviewData
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     initRecyclerView()
-    
-    showData(List(10) {Unit})
+
+    showData(List(10) { OverviewData("countryName", 560, 18300) })
   }
 
   private fun initRecyclerView() {
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
       LinearLayoutManager(this, RecyclerView.VERTICAL, false)
   }
 
-  private fun showData(data: List<Unit>) {
+  private fun showData(data: List<OverviewData>) {
     if (countries_overview_rv.adapter == null)
       countries_overview_rv.adapter = adapter
 
