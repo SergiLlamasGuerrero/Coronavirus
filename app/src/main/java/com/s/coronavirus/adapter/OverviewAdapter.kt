@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.s.coronavirus.R
+import com.s.coronavirus.adapter.entities.OverviewData
 
 class OverviewAdapter : RecyclerView.Adapter<CountryOverviewViewHolder>() {
 
-  var items: List<Unit> = listOf()
+  var items: List<OverviewData> = listOf()
     set(value) {
       field = value
       notifyDataSetChanged()
