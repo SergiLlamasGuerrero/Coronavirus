@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.coronavirus.R
-import com.coronavirus.data.LocationsResponseWrapper
-import com.coronavirus.data.WebServiceProvider
+import com.coronavirus.data.repository.common.ServiceResultWrapper
+import com.coronavirus.data.repository.common.WebServiceManager
+import com.coronavirus.data.repository.entities.CoronavirusRemoteData
 import com.coronavirus.ui.adapter.OverviewAdapter
 import com.coronavirus.ui.adapter.entities.OverviewData
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,12 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     initRecyclerView()
 
-    showData(List(10) { OverviewData("countryName", 560, 18300) })
-
-    runBlocking {
-      WebServiceProvider().get<LocationsResponseWrapper>("/v2/locations")
-    }
-
+    runBlocking { showData(getData()) }
   }
 
   private fun initRecyclerView() {
@@ -40,4 +36,18 @@ class MainActivity : AppCompatActivity() {
 
     adapter.items = data
   }
+
+  private suspend fun getData(): List<OverviewData> =
+    when (val result = WebServiceManager().get<CoronavirusRemoteData>("/v2/locations")) {
+      is ServiceResultWrapper.Success -> {
+        result.data.locations.map {
+          OverviewData(
+            it.country ?: "",
+            it.latest.deaths ?: -1,
+            it.latest.confirmed ?: -1
+          )
+        }
+      }
+      is ServiceResultWrapper.Error -> listOf()
+    }
 }
