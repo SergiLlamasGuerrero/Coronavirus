@@ -4,15 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.coronavirus.data.LocationsResponseWrapper
 import com.coronavirus.R
+import com.coronavirus.data.LocationsResponseWrapper
+import com.coronavirus.data.WebServiceProvider
 import com.coronavirus.ui.adapter.OverviewAdapter
 import com.coronavirus.ui.adapter.entities.OverviewData
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.features.json.GsonSerializer
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.runBlocking
 
@@ -28,10 +24,7 @@ class MainActivity : AppCompatActivity() {
     showData(List(10) { OverviewData("countryName", 560, 18300) })
 
     runBlocking {
-      val client = HttpClient(OkHttp) { install(JsonFeature) { serializer = GsonSerializer() } }
-      val response =
-        client.get<LocationsResponseWrapper>("https://coronavirus-tracker-api.herokuapp.com/v2/locations")
-      client.close()
+      WebServiceProvider().get<LocationsResponseWrapper>("/v2/locations")
     }
 
   }
