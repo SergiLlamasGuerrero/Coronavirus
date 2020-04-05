@@ -1,4 +1,4 @@
-package com.s.coronavirus.adapter.entities
+package com.coronavirus.ui.adapter.entities
 
 class OverviewData(
   val countryName: String,

@@ -7,7 +7,7 @@ android {
     buildToolsVersion versions.build_tools
 
     defaultConfig {
-        applicationId "com.s.coronavirus"
+        applicationId "com.coronavirus"
         minSdkVersion versions.min_sdk
         targetSdkVersion versions.target_sdk
         versionCode 1

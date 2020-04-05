@@ -1,11 +1,13 @@
-package com.s.coronavirus
+package com.coronavirus.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.s.coronavirus.adapter.OverviewAdapter
-import com.s.coronavirus.adapter.entities.OverviewData
+import com.coronavirus.data.LocationsResponseWrapper
+import com.coronavirus.R
+import com.coronavirus.ui.adapter.OverviewAdapter
+import com.coronavirus.ui.adapter.entities.OverviewData
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.json.GsonSerializer
