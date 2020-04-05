@@ -1,6 +1,6 @@
-package com.coronavirus.data
+package com.coronavirus.data.repository.entities
 
-data class LocationsResponseWrapper(
+data class CoronavirusRemoteData(
   val latest: LatestRemoteEntity,
   val locations: List<LocationRemoteEntity>
 )
