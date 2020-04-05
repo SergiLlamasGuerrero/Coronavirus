@@ -1,10 +1,10 @@
-package com.s.coronavirus.adapter
+package com.coronavirus.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.s.coronavirus.R
-import com.s.coronavirus.adapter.entities.OverviewData
+import com.coronavirus.R
+import com.coronavirus.ui.adapter.entities.OverviewData
 
 class OverviewAdapter : RecyclerView.Adapter<CountryOverviewViewHolder>() {
 

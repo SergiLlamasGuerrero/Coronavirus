@@ -1,4 +1,4 @@
-package com.s.coronavirus
+package com.coronavirus.data
 
 data class LocationsResponseWrapper(
   val latest: LatestRemoteEntity,

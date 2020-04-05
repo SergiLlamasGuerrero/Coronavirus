@@ -1,8 +1,8 @@
-package com.s.coronavirus.adapter
+package com.coronavirus.ui.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.s.coronavirus.adapter.entities.OverviewData
+import com.coronavirus.ui.adapter.entities.OverviewData
 import kotlinx.android.synthetic.main.list_item_country_overview.view.*
 
 class CountryOverviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
