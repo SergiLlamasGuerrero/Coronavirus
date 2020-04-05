@@ -6,7 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.s.coronavirus.adapter.OverviewAdapter
 import com.s.coronavirus.adapter.entities.OverviewData
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.features.json.GsonSerializer
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.request.get
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
   private val adapter: OverviewAdapter by lazy { OverviewAdapter() }
@@ -18,6 +24,14 @@ class MainActivity : AppCompatActivity() {
     initRecyclerView()
 
     showData(List(10) { OverviewData("countryName", 560, 18300) })
+
+    runBlocking {
+      val client = HttpClient(OkHttp) { install(JsonFeature) { serializer = GsonSerializer() } }
+      val response =
+        client.get<LocationsResponseWrapper>("https://coronavirus-tracker-api.herokuapp.com/v2/locations")
+      client.close()
+    }
+
   }
 
   private fun initRecyclerView() {
