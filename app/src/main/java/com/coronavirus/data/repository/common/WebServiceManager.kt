@@ -2,16 +2,20 @@ package com.coronavirus.data.repository.common
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.features.json.GsonSerializer
 import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 
 class WebServiceManager {
 
   val client: HttpClient =
     HttpClient(OkHttp) {
       install(JsonFeature) {
-        serializer = GsonSerializer()
+        serializer = KotlinxSerializer(
+          Json(JsonConfiguration(ignoreUnknownKeys = true, isLenient = true))
+        )
       }
     }
 
