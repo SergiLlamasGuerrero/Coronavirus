@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion versions.compile_sdk
@@ -31,6 +32,9 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    packagingOptions {
+        exclude 'META-INF/kotlinx-serialization-runtime.kotlin_module'
+    }
 }
 
 dependencies {
@@ -40,7 +44,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
     implementation "io.ktor:ktor-client-okhttp:${versions.ktor}"
-    implementation "io.ktor:ktor-client-gson:${versions.ktor}"
+    implementation "io.ktor:ktor-client-serialization-jvm:${versions.ktor}"
 
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit-ktx:${versions.junitext}"
