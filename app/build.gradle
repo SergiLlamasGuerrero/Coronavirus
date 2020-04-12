@@ -44,7 +44,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraint}"
     implementation "io.ktor:ktor-client-okhttp:${versions.ktor}"
-    implementation "io.ktor:ktor-client-serialization-jvm:${versions.ktor}"
+    implementation "io.ktor:ktor-client-serialization-native:${versions.ktor}"
 
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit-ktx:${versions.junitext}"
